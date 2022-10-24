@@ -25,7 +25,7 @@ public class Player implements Runnable {
 
 	}
 
-	private void reply(String recievedMessage) {
+	protected void reply(String recievedMessage) {
 
 		// TODO Auto-generated method stub
 		String reply = recievedMessage + " " + numberOfMsgsSent;
@@ -41,8 +41,7 @@ public class Player implements Runnable {
 		}
 
 	}
-
-	private String recieve() {
+	protected String recieve() {
 		// TODO Auto-generated method stub
 		String recievedMessage = "";
 		try {
