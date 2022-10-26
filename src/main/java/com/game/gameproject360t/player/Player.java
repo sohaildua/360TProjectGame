@@ -1,4 +1,4 @@
-package com.game.gameproject360t.Player;
+package com.game.gameproject360t.player;
 
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;

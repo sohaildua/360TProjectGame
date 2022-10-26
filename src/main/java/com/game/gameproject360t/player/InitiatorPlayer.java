@@ -1,4 +1,4 @@
-package com.game.gameproject360t.Player;
+package com.game.gameproject360t.player;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -17,10 +17,12 @@ public class InitiatorPlayer extends Player{
 	    public void run()
 	    {
 	        sendInitMessage();
-	        while (true)
+	        int i = 0;
+	        while (i<4)
 	        {
 	            String receivedMessage = recieve();
 	            reply(receivedMessage);
+	            i++;
 	        }
 	    }
 
