@@ -38,11 +38,12 @@ public class App {
 		InitiatorPlayer firstPlayer = new InitiatorPlayer(firstToSecond, secondToFirst);
 		Player secondPlayer = new Player(secondToFirst, firstToSecond);
 
-	
-
+		
+		
+		
 		new Thread(secondPlayer).start();
-		Thread.sleep(5000);
 		new Thread(firstPlayer).start();
+	
 
 	}
 }

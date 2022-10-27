@@ -2,12 +2,16 @@ package com.game.gameproject360t.player;
 
 import java.util.concurrent.BlockingQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Sohail Dua
  *
  */
 public class InitiatorPlayer extends Player {
 
+	private static Logger logger = LoggerFactory.getLogger(InitiatorPlayer.class);
 	private static final String INIT_MESSAGE = "message";
 
 	public InitiatorPlayer(BlockingQueue<String> msgSent, BlockingQueue<String> msgRecieved) {
@@ -28,9 +32,10 @@ public class InitiatorPlayer extends Player {
 	private void sendInitMessage() {
 		try {
 			msgSent.put(INIT_MESSAGE);
-			System.out.println("Player"+ this +"sent message "+ INIT_MESSAGE);
+		
+			System.out.println("Player " + this + " sent message [" + INIT_MESSAGE +"]");
 		} catch (InterruptedException interrupted) {
-			String error = String.format("Player " +this +" failed to sent message " +INIT_MESSAGE);
+			String error = String.format("Player " + this + " failed to sent message " + INIT_MESSAGE);
 			throw new IllegalStateException(error, interrupted);
 		}
 	}

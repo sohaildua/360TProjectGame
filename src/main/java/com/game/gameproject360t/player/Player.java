@@ -3,20 +3,20 @@ package com.game.gameproject360t.player;
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Sohail Dua
  *
  */
 public class Player implements Runnable {
-
+	private static Logger logger = LoggerFactory.getLogger(Player.class);
 	protected final BlockingQueue<String> msgSent;
 	protected final BlockingQueue<String> msgRecieved;
 
 	public Player(BlockingQueue<String> msgSent, BlockingQueue<String> msgRecieved) {
-		super();
+
 		this.msgSent = msgSent;
 		this.msgRecieved = msgRecieved;
 	}
@@ -38,8 +38,9 @@ public class Player implements Runnable {
 		String reply = recievedMessage + " " + numberOfMsgsSent;
 		try {
 			msgSent.put(reply);
+
 			
-			System.out.printf("Player [%s] sent message [%s].%n", this, reply);
+			System.out.println("Player " + this + "sent message [" + reply +"]");
 			numberOfMsgsSent = numberOfMsgsSent.add(BigInteger.ONE);
 		} catch (InterruptedException exception) {
 
@@ -49,6 +50,7 @@ public class Player implements Runnable {
 		}
 
 	}
+
 	protected String recieve() {
 		// TODO Auto-generated method stub
 		String recievedMessage = "";
