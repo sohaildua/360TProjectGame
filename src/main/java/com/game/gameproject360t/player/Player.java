@@ -3,6 +3,13 @@ package com.game.gameproject360t.player;
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 
+
+
+
+/**
+ * @author Sohail Dua
+ *
+ */
 public class Player implements Runnable {
 
 	protected final BlockingQueue<String> msgSent;
@@ -31,6 +38,7 @@ public class Player implements Runnable {
 		String reply = recievedMessage + " " + numberOfMsgsSent;
 		try {
 			msgSent.put(reply);
+			
 			System.out.printf("Player [%s] sent message [%s].%n", this, reply);
 			numberOfMsgsSent = numberOfMsgsSent.add(BigInteger.ONE);
 		} catch (InterruptedException exception) {
