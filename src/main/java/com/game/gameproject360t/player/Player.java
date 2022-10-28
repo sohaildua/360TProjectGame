@@ -3,15 +3,13 @@ package com.game.gameproject360t.player;
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Sohail Dua
  *
  */
+
 public class Player implements Runnable {
-	private static Logger logger = LoggerFactory.getLogger(Player.class);
+
 	protected final BlockingQueue<String> msgSent;
 	protected final BlockingQueue<String> msgRecieved;
 
@@ -32,15 +30,19 @@ public class Player implements Runnable {
 
 	}
 
+	/**
+	 * send a message to another player
+	 * @param recievedMessage message send to another player
+	 * @throws InterruptedException if the thread is interrupted while sending a message
+	 * @throws IllegalStateException if thread is already started or stop
+	 */
 	protected void reply(String recievedMessage) {
 
-		// TODO Auto-generated method stub
 		String reply = recievedMessage + " " + numberOfMsgsSent;
 		try {
 			msgSent.put(reply);
 
-			
-			System.out.println("Player " + this + "sent message [" + reply +"]");
+			System.out.println("Player " + this + "sent message [" + reply + "]");
 			numberOfMsgsSent = numberOfMsgsSent.add(BigInteger.ONE);
 		} catch (InterruptedException exception) {
 
@@ -51,8 +53,14 @@ public class Player implements Runnable {
 
 	}
 
+	
+	/**
+	 * receives the message in BlockingQueue
+	 * @throws InterruptedException if the thread is interrupted while receive a message
+	 * @throws IllegalStateException if thread is already started or stop
+	 * @return recievedMessage
+	 */
 	protected String recieve() {
-		// TODO Auto-generated method stub
 		String recievedMessage = "";
 		try {
 

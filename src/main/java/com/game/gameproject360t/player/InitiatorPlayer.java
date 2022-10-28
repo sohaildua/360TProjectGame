@@ -2,16 +2,13 @@ package com.game.gameproject360t.player;
 
 import java.util.concurrent.BlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Sohail Dua
  *
  */
 public class InitiatorPlayer extends Player {
 
-	private static Logger logger = LoggerFactory.getLogger(InitiatorPlayer.class);
+	
 	private static final String INIT_MESSAGE = "message";
 
 	public InitiatorPlayer(BlockingQueue<String> msgSent, BlockingQueue<String> msgRecieved) {
