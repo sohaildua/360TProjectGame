@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 
 /**
+ * This class is used to run a player class 
+ * 
  * @author Sohail Dua
  *
  */
@@ -13,6 +15,12 @@ public class Player implements Runnable {
 	protected final BlockingQueue<String> msgSent;
 	protected final BlockingQueue<String> msgRecieved;
 
+	
+	/**
+	 * Constructor of Player class
+	 * @param msgSent
+	 * @param msgRecieved
+	 */
 	public Player(BlockingQueue<String> msgSent, BlockingQueue<String> msgRecieved) {
 
 		this.msgSent = msgSent;
@@ -21,6 +29,11 @@ public class Player implements Runnable {
 
 	private BigInteger numberOfMsgsSent = new BigInteger("0");
 
+	
+	
+	/**
+	 * Running the thread through this function
+	 */
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) {
@@ -36,7 +49,7 @@ public class Player implements Runnable {
 	 * @throws InterruptedException if the thread is interrupted while sending a message
 	 * @throws IllegalStateException if thread is already started or stop
 	 */
-	protected void reply(String recievedMessage) {
+	public void reply(String recievedMessage) {
 
 		String reply = recievedMessage + " " + numberOfMsgsSent;
 		try {
@@ -60,7 +73,7 @@ public class Player implements Runnable {
 	 * @throws IllegalStateException if thread is already started or stop
 	 * @return recievedMessage
 	 */
-	protected String recieve() {
+	public String recieve() {
 		String recievedMessage = "";
 		try {
 

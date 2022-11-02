@@ -1,38 +1,63 @@
 package com.game.gameproject360t;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.game.gameproject360t.player.InitiatorPlayer;
+import com.game.gameproject360t.player.Player;
 
 /**
- * Unit test for simple App.
+ * 
+ * Unit tests
+ * 
+ * @author Sohail Dua
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	BlockingQueue<String> firstToSecondMessage;
+	BlockingQueue<String> secondToFirstMessage;
+	InitiatorPlayer firstPlayer;
+	Player secondPlayer;
+
+	/**
+	 * Create two players, initiator and player
+	 */
+	@BeforeEach
+	public void initialization() {
+		firstToSecondMessage = new ArrayBlockingQueue<String>(1);
+		secondToFirstMessage = new ArrayBlockingQueue<String>(1);
+		firstPlayer = new InitiatorPlayer(firstToSecondMessage, secondToFirstMessage);
+		secondPlayer = new Player(secondToFirstMessage, firstToSecondMessage);
+
+	}
+
+	/**
+	 * Initiator sends a message to player
+	 */
+	@Test
+	public void sendMessageToSecondPlayer() {
+		firstPlayer.sendInitMessage("message");
+
+		Assertions.assertEquals(firstToSecondMessage.size(), 1);
+
+	}
+
+	/**
+	 * When initiator sends a message to player, check if player received the same
+	 * message
+	 */
+
+	@Test
+	public void whenInitiatorSendsMessageToPlayer_thenPlayer2SendsBackMessageWithCounter() {
+		firstPlayer.sendInitMessage("message");
+		secondPlayer.reply("message");
+		Assertions.assertEquals(secondToFirstMessage.poll(), "message 0");
+
+	}
+
 }

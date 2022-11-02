@@ -16,8 +16,9 @@ import com.game.gameproject360t.player.Player;
 public class App {
 
 	/**
-	 * firstPlayer sends a message to secondPlayer , secondPlayer responds to the firstPlayer with a message
-	 * Also Printing out the messages received from both players
+	 * firstPlayer sends a message to secondPlayer , secondPlayer responds to the
+	 * firstPlayer with a message Also Printing out the messages received from both
+	 * players
 	 * 
 	 * @param args
 	 *
@@ -38,12 +39,8 @@ public class App {
 		InitiatorPlayer firstPlayer = new InitiatorPlayer(firstToSecond, secondToFirst);
 		Player secondPlayer = new Player(secondToFirst, firstToSecond);
 
-		
-		
-		
 		new Thread(secondPlayer).start();
 		new Thread(firstPlayer).start();
-	
 
 	}
 }
